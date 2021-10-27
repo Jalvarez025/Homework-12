@@ -52,6 +52,11 @@ function process(answers) {
       break;
   }
 
+  const allEmployees = [];
+  const allDepartments = [];
+  const allRoles = [];
+  const allManagers = [];
+
   function addDepartment() {
     inquirer
       .prompt([
@@ -77,6 +82,7 @@ function process(answers) {
   }
 
   function addRole() {
+    
     inquirer
       .prompt([
         /* Pass your questions in here */
@@ -94,7 +100,7 @@ function process(answers) {
           type: 'list',
           name: 'roleDepartment',
           message: 'Which department does this role belong to?',
-          choices: [allDepartments]
+          choices: allDepartments
         }
       ])
       .then((answers) => {
@@ -113,6 +119,7 @@ function process(answers) {
   }
 
   function addEmployee(){
+    
     inquirer
       .prompt([
         /* Pass your questions in here */
@@ -130,13 +137,13 @@ function process(answers) {
           type: 'list',
           name: 'employeeRole',
           message: 'What is the employees role?',
-          choices: [allRoles]
+          choices: allRoles
         },
         {
           type: 'list',
           name: 'employeeManager',
           message: 'Who is the employees manager?',
-          choices: [allManagers]
+          choices: allManagers
         }
       ])
       .then((answers) => {
@@ -162,13 +169,13 @@ function process(answers) {
         type: 'list',
         name: 'employeeUpdate',
         message: 'Which employees role do you want to update?',
-        choices: [allEmployees]
+        choices: allEmployees
       },
       {
         type: 'list',
         name: 'updatedRole',
         message: 'Which role do you want to assign the selected employee?',
-        choices: [allRoles]
+        choices: allRoles
       }
     ])
     .then((answers) => {
