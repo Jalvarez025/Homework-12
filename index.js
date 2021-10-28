@@ -4,10 +4,10 @@ inquirer
   .prompt([
     /* Pass your questions in here */
     {
-        type: 'list',
-        name: 'toDo',
-        message: 'What would you like to do?',
-        choices: ["View All Employees","Add Employee","Update Employee Role","View All Roles","Add Role","View All Departments","Add Department","Quit"]
+      type: 'list',
+      name: 'toDo',
+      message: 'What would you like to do?',
+      choices: ["View All Employees", "Add Employee", "Update Employee Role", "View All Roles", "Add Role", "View All Departments", "Add Department", "Quit"]
     }
   ])
   .then((answers) => {
@@ -24,7 +24,7 @@ inquirer
   });
 
 function process(answers) {
-  console(answers.toDo)
+  console.log(answers.toDo)
   switch (answers.toDo) {
     case 'View All Employees':
       //code block
@@ -83,7 +83,7 @@ function addDepartment() {
 }
 
 function addRole() {
-  
+
   inquirer
     .prompt([
       /* Pass your questions in here */
@@ -116,11 +116,10 @@ function addRole() {
         // Something else went wrong
       }
     });
-
 }
 
-function addEmployee(){
-  
+function addEmployee() {
+
   inquirer
     .prompt([
       /* Pass your questions in here */
@@ -159,36 +158,35 @@ function addEmployee(){
         // Something else went wrong
       }
     });
-
 }
 
-function updateRole(){
+function updateRole() {
   inquirer
-  .prompt([
-    /* Pass your questions in here */
-    {
-      type: 'list',
-      name: 'employeeUpdate',
-      message: 'Which employees role do you want to update?',
-      choices: allEmployees
-    },
-    {
-      type: 'list',
-      name: 'updatedRole',
-      message: 'Which role do you want to assign the selected employee?',
-      choices: allRoles
-    }
-  ])
-  .then((answers) => {
-    // Use user feedback for... whatever!!
-    // code block
-    console.log(answers)
-  })
-  .catch((error) => {
-    if (error.isTtyError) {
-      // Prompt couldn't be rendered in the current environment
-    } else {
-      // Something else went wrong
-    }
-  });
+    .prompt([
+      /* Pass your questions in here */
+      {
+        type: 'list',
+        name: 'employeeUpdate',
+        message: 'Which employees role do you want to update?',
+        choices: allEmployees
+      },
+      {
+        type: 'list',
+        name: 'updatedRole',
+        message: 'Which role do you want to assign the selected employee?',
+        choices: allRoles
+      }
+    ])
+    .then((answers) => {
+      // Use user feedback for... whatever!!
+      // code block
+      console.log(answers)
+    })
+    .catch((error) => {
+      if (error.isTtyError) {
+        // Prompt couldn't be rendered in the current environment
+      } else {
+        // Something else went wrong
+      }
+    });
 }
