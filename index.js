@@ -51,131 +51,21 @@ function process(answers) {
       //code block
       break;
   }
+}
 
-  const allEmployees = [];
-  const allDepartments = [];
-  const allRoles = [];
-  const allManagers = [];
+const allEmployees = [];
+const allDepartments = [];
+const allRoles = [];
+const allManagers = [];
 
-  function addDepartment() {
-    inquirer
-      .prompt([
-        /* Pass your questions in here */
-        {
-          type: 'input',
-          name: 'departmentName',
-          message: 'What is the department name?'
-        }
-      ])
-      .then((answers) => {
-        // Use user feedback for... whatever!!
-        // code block
-        console.log(answers)
-      })
-      .catch((error) => {
-        if (error.isTtyError) {
-          // Prompt couldn't be rendered in the current environment
-        } else {
-          // Something else went wrong
-        }
-      });
-  }
-
-  function addRole() {
-    
-    inquirer
-      .prompt([
-        /* Pass your questions in here */
-        {
-          type: 'input',
-          name: 'roleName',
-          message: 'What is the name of this role?',
-        },
-        {
-          type: 'input',
-          name: 'roleSalary',
-          message: 'What is the salary of this role?',
-        },
-        {
-          type: 'list',
-          name: 'roleDepartment',
-          message: 'Which department does this role belong to?',
-          choices: allDepartments
-        }
-      ])
-      .then((answers) => {
-        // Use user feedback for... whatever!!
-        // code block
-        console.log(answers)
-      })
-      .catch((error) => {
-        if (error.isTtyError) {
-          // Prompt couldn't be rendered in the current environment
-        } else {
-          // Something else went wrong
-        }
-      });
-
-  }
-
-  function addEmployee(){
-    
-    inquirer
-      .prompt([
-        /* Pass your questions in here */
-        {
-          type: 'input',
-          name: 'employeeFirstName',
-          message: 'What is the employees first name?',
-        },
-        {
-          type: 'input',
-          name: 'employeeLastName',
-          message: 'What is the employees last name?',
-        },
-        {
-          type: 'list',
-          name: 'employeeRole',
-          message: 'What is the employees role?',
-          choices: allRoles
-        },
-        {
-          type: 'list',
-          name: 'employeeManager',
-          message: 'Who is the employees manager?',
-          choices: allManagers
-        }
-      ])
-      .then((answers) => {
-        // Use user feedback for... whatever!!
-        // code block
-        console.log(answers)
-      })
-      .catch((error) => {
-        if (error.isTtyError) {
-          // Prompt couldn't be rendered in the current environment
-        } else {
-          // Something else went wrong
-        }
-      });
-
-  }
-
-  function updateRole(){
-    inquirer
+function addDepartment() {
+  inquirer
     .prompt([
       /* Pass your questions in here */
       {
-        type: 'list',
-        name: 'employeeUpdate',
-        message: 'Which employees role do you want to update?',
-        choices: allEmployees
-      },
-      {
-        type: 'list',
-        name: 'updatedRole',
-        message: 'Which role do you want to assign the selected employee?',
-        choices: allRoles
+        type: 'input',
+        name: 'departmentName',
+        message: 'What is the department name?'
       }
     ])
     .then((answers) => {
@@ -190,6 +80,115 @@ function process(answers) {
         // Something else went wrong
       }
     });
-  }
+}
 
+function addRole() {
+  
+  inquirer
+    .prompt([
+      /* Pass your questions in here */
+      {
+        type: 'input',
+        name: 'roleName',
+        message: 'What is the name of this role?',
+      },
+      {
+        type: 'input',
+        name: 'roleSalary',
+        message: 'What is the salary of this role?',
+      },
+      {
+        type: 'list',
+        name: 'roleDepartment',
+        message: 'Which department does this role belong to?',
+        choices: allDepartments
+      }
+    ])
+    .then((answers) => {
+      // Use user feedback for... whatever!!
+      // code block
+      console.log(answers)
+    })
+    .catch((error) => {
+      if (error.isTtyError) {
+        // Prompt couldn't be rendered in the current environment
+      } else {
+        // Something else went wrong
+      }
+    });
+
+}
+
+function addEmployee(){
+  
+  inquirer
+    .prompt([
+      /* Pass your questions in here */
+      {
+        type: 'input',
+        name: 'employeeFirstName',
+        message: 'What is the employees first name?',
+      },
+      {
+        type: 'input',
+        name: 'employeeLastName',
+        message: 'What is the employees last name?',
+      },
+      {
+        type: 'list',
+        name: 'employeeRole',
+        message: 'What is the employees role?',
+        choices: allRoles
+      },
+      {
+        type: 'list',
+        name: 'employeeManager',
+        message: 'Who is the employees manager?',
+        choices: allManagers
+      }
+    ])
+    .then((answers) => {
+      // Use user feedback for... whatever!!
+      // code block
+      console.log(answers)
+    })
+    .catch((error) => {
+      if (error.isTtyError) {
+        // Prompt couldn't be rendered in the current environment
+      } else {
+        // Something else went wrong
+      }
+    });
+
+}
+
+function updateRole(){
+  inquirer
+  .prompt([
+    /* Pass your questions in here */
+    {
+      type: 'list',
+      name: 'employeeUpdate',
+      message: 'Which employees role do you want to update?',
+      choices: allEmployees
+    },
+    {
+      type: 'list',
+      name: 'updatedRole',
+      message: 'Which role do you want to assign the selected employee?',
+      choices: allRoles
+    }
+  ])
+  .then((answers) => {
+    // Use user feedback for... whatever!!
+    // code block
+    console.log(answers)
+  })
+  .catch((error) => {
+    if (error.isTtyError) {
+      // Prompt couldn't be rendered in the current environment
+    } else {
+      // Something else went wrong
+    }
+  });
 }
