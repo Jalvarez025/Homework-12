@@ -1,6 +1,22 @@
 var inquirer = require('inquirer');
 
-inquirer
+// Connect to database
+const mysql = require('mysql2');
+const { exit } = require('process');
+const db = mysql.createConnection(
+  {
+    host: 'localhost',
+    // MySQL username,
+    user: 'root',
+    // MySQL password
+    password: 'IronMan123',
+    database: 'company_db'
+  },
+console.log(`Connected to the company_db database.`)
+);
+
+function questions(){
+  inquirer
   .prompt([
     /* Pass your questions in here */
     {
@@ -22,12 +38,18 @@ inquirer
       // Something else went wrong
     }
   });
+}
+
+
 
 function process(answers) {
   console.log(answers.toDo)
   switch (answers.toDo) {
     case 'View All Employees':
-      //code block
+      db.query('SELECT * FROM employee', function (err, results) {
+        console.log(results);
+      });
+      questions();
       break;
     case 'Add Employee':
       addEmployee();
@@ -36,19 +58,25 @@ function process(answers) {
       updateRole();
       break;
     case 'View All Roles':
-      //code block
+      db.query('SELECT * FROM role', function (err, results) {
+        console.log(results);
+      });
+      questions();
       break;
     case 'Add Role':
       addRole();
       break;
     case 'View All Departments':
-      //code block
+      db.query('SELECT * FROM department', function (err, results) {
+        console.log(results);
+      });
+      questions();
       break;
     case 'Add Department':
       addDepartment();
       break;
     case 'Quit':
-      //code block
+      exit();
       break;
   }
 }
@@ -190,3 +218,5 @@ function updateRole() {
       }
     });
 }
+
+questions();
