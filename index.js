@@ -1,19 +1,5 @@
 var inquirer = require('inquirer');
-
-// Connect to database
-const mysql = require('mysql2');
-const { exit } = require('process');
-const db = mysql.createConnection(
-  {
-    host: 'localhost',
-    // MySQL username,
-    user: 'root',
-    // MySQL password
-    password: 'IronMan123',
-    database: 'company_db'
-  },
-console.log(`Connected to the company_db database.`)
-);
+const DB = require("./db/")
 
 function questions(){
   inquirer
@@ -46,10 +32,7 @@ function process(answers) {
   console.log(answers.toDo)
   switch (answers.toDo) {
     case 'View All Employees':
-      db.query('SELECT * FROM employee', function (err, results) {
-        console.log(results);
-      });
-      questions();
+      viewEmployees();
       break;
     case 'Add Employee':
       addEmployee();
@@ -85,6 +68,12 @@ const allEmployees = [];
 const allDepartments = [];
 const allRoles = [];
 const allManagers = [];
+
+async function viewEmployees(){
+  const employees = await db.findAllEmployees()
+  console.table(employees)
+  questions()
+}
 
 function addDepartment() {
   inquirer
